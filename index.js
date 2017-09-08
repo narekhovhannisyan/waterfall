@@ -8,9 +8,8 @@ const waterfall = (arr, fn, ...args) => {
       let func = arr.shift()
       func(...args, (err, ...res) => {
         if (err) {
-          console.error(err)
-        }
-        waterfall(arr, fn, ...res)
+          fn(err)
+        } else { waterfall(arr, fn, ...res) }
       })
     }
   }
